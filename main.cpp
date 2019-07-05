@@ -386,13 +386,13 @@ void computer()
         x=0;
         while(x<8){
             if(a[x][y][0]==1){
-                if(x+1==wh1.Getxpos()&&y+1==wh1.Getypos()&&wh1.Getgefangen()==1){
+                if(x+1==bh1.Getxpos()&&y+1==bh1.Getypos()&&bh1.Getgefangen()==1){
                     a[x][y][0]=0;
                 }
-                if(x+1==wh2.Getxpos()&&y+1==wh2.Getypos()&&wh2.Getgefangen()==1){
+                if(x+1==bh2.Getxpos()&&y+1==bh2.Getypos()&&bh2.Getgefangen()==1){
                     a[x][y][0]=0;
                 }
-                if(x+1==wh3.Getxpos()&&y+1==wh3.Getypos()&&wh3.Getgefangen()==1){
+                if(x+1==bh3.Getxpos()&&y+1==bh3.Getypos()&&bh3.Getgefangen()==1){
                     a[x][y][0]=0;
                 }
             }
@@ -529,40 +529,45 @@ int user()
     cin >>xalt;
     cout <<"Ypos= ";
     cin >> yalt;
-    if (xalt==wh1.Getxpos()&&yalt==wh1.Getypos()){
-        if (wh1.Getgefangen()==1){return 0;}
-        wh1.Setziehen(1);
-        figur++;
+    if ((xalt==1||xalt==2||xalt==3||xalt==4||xalt==5||xalt==6||xalt==7||xalt==8)&&(yalt==1||yalt==2||yalt==3||yalt==4||yalt==5||yalt==6||yalt==7||yalt==8)){
+        if (xalt==wh1.Getxpos()&&yalt==wh1.Getypos()){
+            if (wh1.Getgefangen()==1){return 0;}
+            wh1.Setziehen(1);
+            figur++;
+        }
+        if (xalt==wh2.Getxpos()&&yalt==wh2.Getypos()){
+            if (wh2.Getgefangen()==1){return 0;}
+            wh2.Setziehen(1);
+            figur++;
+        }
+        if (xalt==wh3.Getxpos()&&yalt==wh3.Getypos()){
+            if (wh3.Getgefangen()==1){return 0;}
+            wh3.Setziehen(1);
+            figur++;
+        }
+        if (xalt==wk.Getxpos()&&yalt==wk.Getypos()){
+            wk.Setziehen(1);
+            figur++;
+        }
+        if (figur==0){
+            cout << "An dieser Position befindet sich keine Figur." << endl;
+            return 0;
+        }
+        cout <<"Wohin soll diese Figur ziehen?" <<endl;
+        cout <<"Xpos= ";
+        cin >>xneu;
+        cout <<"Ypos= ";
+        cin >> yneu;
+        if ((xneu==1||xneu==2||xneu==3||xneu==4||xneu==5||xneu==6||xneu==7||xneu==8)&&(yneu==1||yneu==2||yneu==3||yneu==4||yneu==5||yneu==6||yneu==7||yneu==8)){
+            xneu = xneu*10 + yneu;
+            return xneu;
+        }else{
+            cout << "Keine valide Eingabe" << endl;
+        }
+    }else{
+        cout << "Keine valide Eingabe." << endl;
     }
-    if (xalt==wh2.Getxpos()&&yalt==wh2.Getypos()){
-        if (wh2.Getgefangen()==1){return 0;}
-        wh2.Setziehen(1);
-        figur++;
-    }
-    if (xalt==wh3.Getxpos()&&yalt==wh3.Getypos()){
-        if (wh3.Getgefangen()==1){return 0;}
-        wh3.Setziehen(1);
-        figur++;
-    }
-    if (xalt==wk.Getxpos()&&yalt==wk.Getypos()){
-        wk.Setziehen(1);
-        figur++;
-    }
-    if (figur==0){
-        cout << "An dieser Position befindet sich keine Figur." << endl;
-        return 0;
-    }
-    cout <<"Wohin soll diese Figur ziehen?" <<endl;
-    cout <<"Xpos= ";
-    cin >>xneu;
-    cout <<"Ypos= ";
-    cin >> yneu;
-    if (xneu<1||xneu>8||yneu<1||yneu>8){
-        cout << "Diese Position befindet sich außerhalb des Spielfeldes." << endl;
-        return 0;
-    }
-    xneu = xneu*10 + yneu;
-    return xneu;
+    return 0;
 }
 
 //Beschreibungstext
